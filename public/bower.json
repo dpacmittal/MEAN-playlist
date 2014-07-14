@@ -1,0 +1,22 @@
+{
+  "name": "mean-plist",
+  "version": "1.0.0",
+  "authors": [
+    "Deepak Mittal <dpac.mittal2@gmail.com>"
+  ],
+  "description": "Mean playlist",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.11.0",
+    "angularjs": "*",
+    "angular-dragdrop": "~1.0.7"
+  }
+}

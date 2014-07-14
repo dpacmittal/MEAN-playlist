@@ -1,0 +1,54 @@
+<html>
+<head>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/lib/jquery-ui/themes/ui-lightness/jquery-ui.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body ng-app="mean-playlist">
+	<div ng-controller="SearchController" class='col-sm-12 searchbar'>
+		
+		<input type="text" ng-model='query' ng-enter="search()">
+		
+	</div>
+	<div ng-controller="PlayListController" class='col-sm-2 fillheight'>
+		<input type="text" placeholder="Search" ng-model="searchPlaylist"/>
+		<ul data-drop="true" jqyoui-droppable data-jqyoui-options="{accept: '.search-result'}" ng-model="videos">
+			<li ng-repeat="playlist in playlists | filter:searchPlaylist">{{playlist.name}}</li>
+		</ul>
+		
+			<input type="text" ng-model="new_playlist_name" />
+			<button type="submit" ng-click="add()">Submit</button>
+			<button type="submit" ng-click="videoInfo()">VideoInfo</button>
+		
+	</div>
+	<div ng-controller="SearchController" class="search-results col-sm-8 fillheight">
+		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" data-jqyoui-options>
+			<img src="{{video.snippet.thumbnails.default.url}}"/>
+			<h3>{{video.snippet.title}}</h3>
+		</div>
+		<div class="videos">
+			<div class='video' ng-repeat="video in results">
+				<youtube code="{{video.id.videoId}}" /></youtube>
+			</div>
+		</div>
+	</div>
+	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="/lib/jquery-ui/jquery-ui.min.js"></script>
+	<script	src="/lib/angular/angular.min.js"></script>
+	<script	src="/lib/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+	<script src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="/js/services/playlist.js"></script>
+	<script src="/js/services/songs.js"></script>
+	<script src="/js/services/youtube.js"></script>
+	<script src="/js/directives/directives.js"></script>
+	<script src="/js/controllers/playlists.js"></script>
+	<script src="/js/controllers/search.js"></script>
+	<script src="/js/controllers/nowplaying.js"></script>
+</body>
+</html>
