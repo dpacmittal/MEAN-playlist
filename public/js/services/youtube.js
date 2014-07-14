@@ -1,7 +1,7 @@
-mean.factory('YoutubeFactory', function($http, $rootScope){
+mean.factory('YoutubeFactory', function($http, $rootScope, PLIST_CONFIG){
 	var factory = this;
 	var api_url = 'https://www.googleapis.com/youtube/v3/';
-	var api_key = 'AIzaSyCVp1fFQKQT0_GbxMVbEs42VRbbSZkovb8';
+	var api_key = PLIST_CONFIG.api_key;
 	factory.refreshVideoInfo = function(ids) {
 		return $http.get(api_url + 'videos?id=' + ids.join(',') + '&key=' + api_key + '&part=snippet,contentDetails,statistics,status');
 	}
