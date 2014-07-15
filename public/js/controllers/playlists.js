@@ -14,4 +14,8 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 		DragDropFactory.clearData();
 		PlayListFactory.addSong(this.playlist.name, video);
 	}
+	$scope.setNowPlaying = function(id){
+		console.log("Playlist ID: " , id);
+		PlayListFactory.setNowPlaying(id);
+	}
 });

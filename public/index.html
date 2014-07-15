@@ -18,11 +18,12 @@
 		<input type="text" placeholder="Search" ng-model="searchPlaylist"/>
 		<ul>
 			<li ng-repeat="playlist in playlists | filter:searchPlaylist"  data-drop="true" jqyoui-droppable="{multiple: true, onDrop: 'dragEnd()'}" data-jqyoui-options="{accept: '.search-result', hoverClass: 'droppable-highlight', tolerance: 'pointer'}">{{playlist.name}}
-			<ul class="songlist">
-				<li ng-repeat="song in playlist.songs">
-					{{song.snippet.title}}
-				</li>
-			</ul>
+				<ul class="songlist">
+					<li ng-repeat="song in playlist.songs">
+						{{song.snippet.title}}
+					</li>
+				</ul>
+				<button ng-click="setNowPlaying(playlist.id)">Play</button>
 			</li>
 		</ul>
 		
@@ -43,6 +44,8 @@
 		</div>-->
 	</div>
 	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
+		<span ng-repeat="song in nowPlaying.songs">{{song.snippet.title}}
+		</span>
 	</div>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="/lib/jquery-ui/jquery-ui.min.js"></script>
