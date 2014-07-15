@@ -12,8 +12,14 @@ mean.factory('PlayListFactory', function($filter){
 	}
 	this.addSong = function(playlist_name, song) {
 		var found = $filter('filter')(playlists, {name: playlist_name}, true)[0];
-		if(found.songs)
-		found.songs.push(song);
+		if(found.songs) {
+			//console.log(song);
+			var dup = $filter('filter')(found.songs, {etag: song.etag }, true)[0];
+			//console.log(dup);
+			if(!dup)
+				found.songs.push(song);
+		}
+		
 	}
 	return factory;
 });
