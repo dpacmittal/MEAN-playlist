@@ -1,4 +1,4 @@
-mean.controller('SearchController', function($scope, $timeout, YoutubeFactory){
+mean.controller('SearchController', function($scope, $timeout, YoutubeFactory, DragDropFactory){
 	$scope.search = function(){
 		YoutubeFactory.search($scope.query);
 	}
@@ -7,4 +7,7 @@ mean.controller('SearchController', function($scope, $timeout, YoutubeFactory){
 		$scope.results = YoutubeFactory.getSearchResults().items;
 		console.log($scope);
 	});
+	$scope.dragStart = function(e) {
+		DragDropFactory.setData(this.video, 'video');
+	}
 });

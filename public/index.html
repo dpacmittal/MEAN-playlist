@@ -1,3 +1,4 @@
+<!DOCTYPE html5>
 <html>
 <head>
 	<link rel="stylesheet" href="/stylesheets/style.css">
@@ -15,8 +16,14 @@
 	</div>
 	<div ng-controller="PlayListController" class='col-sm-2 fillheight'>
 		<input type="text" placeholder="Search" ng-model="searchPlaylist"/>
-		<ul data-drop="true" jqyoui-droppable data-jqyoui-options="{accept: '.search-result'}" ng-model="videos">
-			<li ng-repeat="playlist in playlists | filter:searchPlaylist">{{playlist.name}}</li>
+		<ul>
+			<li ng-repeat="playlist in playlists | filter:searchPlaylist"  data-drop="true" jqyoui-droppable="{multiple: true, onDrop: 'dragEnd()'}" data-jqyoui-options="{accept: '.search-result', hoverClass: 'droppable-highlight', tolerance: 'pointer'}">{{playlist.name}}
+			<ul class="songlist">
+				<li ng-repeat="song in playlist.songs">
+					{{song.snippet.title}}
+				</li>
+			</ul>
+			</li>
 		</ul>
 		
 			<input type="text" ng-model="new_playlist_name" />
@@ -25,15 +32,15 @@
 		
 	</div>
 	<div ng-controller="SearchController" class="search-results col-sm-8 fillheight">
-		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" data-jqyoui-options>
+		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{placeholder:true,animate:true, onStart:'dragStart(video)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body', containment: 'document', distance:'10', opacity: '0.5', cursorAt: {top: 0, left: 0}}">
 			<img src="{{video.snippet.thumbnails.default.url}}"/>
 			<h3>{{video.snippet.title}}</h3>
 		</div>
-		<div class="videos">
+		<!--<div class="videos">
 			<div class='video' ng-repeat="video in results">
 				<youtube code="{{video.id.videoId}}" /></youtube>
 			</div>
-		</div>
+		</div>-->
 	</div>
 	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
 	</div>
@@ -47,6 +54,7 @@
 	<script src="/js/services/playlist.js"></script>
 	<script src="/js/services/songs.js"></script>
 	<script src="/js/services/youtube.js"></script>
+	<script src="/js/services/dragdrop.js"></script>
 	<script src="/js/directives/directives.js"></script>
 	<script src="/js/controllers/playlists.js"></script>
 	<script src="/js/controllers/search.js"></script>

@@ -1,4 +1,4 @@
-mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeFactory){
+mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeFactory, DragDropFactory){
 	$scope.playlists = PlayListFactory.getAll();
 	$scope.add = function() {PlayListFactory.add($scope.new_playlist_name, '1234', []) };
 	$scope.videoInfo = function()  { 
@@ -7,4 +7,11 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 			console.log(data);
 		});
 	};
+	$scope.dragEnd = function(e) {
+		console.log(this);
+		var video = DragDropFactory.getData();
+		video = video.data;
+		DragDropFactory.clearData();
+		PlayListFactory.addSong(this.playlist.name, video);
+	}
 });

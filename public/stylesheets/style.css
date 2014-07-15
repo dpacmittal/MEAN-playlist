@@ -26,3 +26,8 @@ div.searchbar {
 	height: 10%;
 	min-height: 10%;
 }
+.droppable-highlight {
+	margin-bottom: 20px;
+	border: 1px dashed #999;
+	background: #ddd;
+}
