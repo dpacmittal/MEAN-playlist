@@ -1,4 +1,4 @@
 'use strict';
-var mean = angular.module('mean-playlist',['ngDragDrop']);
+var mean = angular.module('mean-playlist',['ngDragDrop', 'ui.bootstrap']);
 
 //jQuery functions

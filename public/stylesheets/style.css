@@ -31,3 +31,10 @@ div.searchbar {
 	border: 1px dashed #999;
 	background: #ddd;
 }
+.nowplayingsong{
+	float: left;
+	border: 1px solid #999;
+	margin-right: 5px;
+	min-height: 90%;
+	width: 100px;
+}

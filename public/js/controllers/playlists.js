@@ -1,6 +1,8 @@
 mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeFactory, DragDropFactory){
 	$scope.playlists = PlayListFactory.getAll();
-	$scope.add = function() {PlayListFactory.add($scope.new_playlist_name, '1234', []) };
+	$scope.add = function() {
+		PlayListFactory.add($scope.new_playlist_name, Math.floor((Math.random()*100000)+1), []) 
+	};
 	$scope.videoInfo = function()  { 
 		YoutubeFactory.refreshVideoInfo([$scope.new_playlist_name])
 		.success(function(data, status, headers, config){ 
