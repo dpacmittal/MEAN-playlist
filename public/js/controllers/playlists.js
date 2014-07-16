@@ -11,14 +11,12 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 		});
 	};
 	$scope.dragEnd = function(e) {
-		console.log(this);
 		var video = DragDropFactory.getData();
 		video = video.data;
 		DragDropFactory.clearData();
 		PlayListFactory.addSong(this.playlist.name, video);
 	}
 	$scope.setNowPlaying = function(id){
-		console.log("Playlist ID: " , id);
 		PlayListFactory.setNowPlaying(id);
 	}
 	$scope.$on

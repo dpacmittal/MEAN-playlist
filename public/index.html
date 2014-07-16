@@ -46,7 +46,7 @@
 	<div ng-controller="SearchController" class="search-results col-sm-8 fillheight">
 		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{placeholder:true,animate:true, onStart:'dragStart(video)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body', containment: 'document', distance:'10', opacity: '0.5', cursorAt: {top: 0, left: 0}}">
 			<img src="{{video.snippet.thumbnails.default.url}}"/>
-			<h3 style="display: inline;">{{video.snippet.title}}</h3>
+			<h3 style="display: inline;">{{video.snippet.title}} {{video.details.contentDetails.formattedDuration | date: mediumTime}} {{video.details.contentDetails.formattedDuration}}</h3>
 		</div>
 		<!--<div class="videos">
 			<div class='video' ng-repeat="video in results">

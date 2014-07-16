@@ -178,7 +178,6 @@ angular.module('youtube-embed', ['ng']).run(function () {
         },
         link: function (scope, element, attrs) {
             // Attach to element
-                console.log("ELEMENT:" , element);
             $youtube.playerId = element[0].id;
 
             var stopWatchingReady = scope.$watch(
