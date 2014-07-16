@@ -36,5 +36,8 @@ div.searchbar {
 	border: 1px solid #999;
 	margin-right: 5px;
 	min-height: 90%;
+	max-height: 90%;
+	overflow: hidden;
+	margin-top: 5px;
 	width: 100px;
 }

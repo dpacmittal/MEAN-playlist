@@ -6,7 +6,7 @@ mean.factory('YoutubeFactory', function($http, $rootScope, PLIST_CONFIG){
 		return $http.get(api_url + 'videos?id=' + ids.join(',') + '&key=' + api_key + '&part=snippet,contentDetails,statistics,status');
 	}
 	factory.search = function(query) {
-		return $http.get(api_url + 'search?maxResults=5&part=snippet&q=' + encodeURI(query) + '&key=' + api_key + '&type=video')
+		return $http.get(api_url + 'search?maxResults=20&part=snippet&q=' + encodeURI(query) + '&key=' + api_key + '&type=video')
 		.success(function(data){ 
 			factory.search_results = data; 
 			$rootScope.$broadcast('searchResultRetrieved');

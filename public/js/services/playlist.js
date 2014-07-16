@@ -23,8 +23,10 @@ mean.factory('PlayListFactory', function($filter, $rootScope){
 		
 	}
 	this.setNowPlaying = function(id){
+		ex_nowPlaying = nowPlaying;
 		nowPlaying = $filter('filter')(playlists, {id: id}, true)[0];
-		$rootScope.$broadcast('nowPlayingChanged');
+		if(ex_nowPlaying != nowPlaying)
+			$rootScope.$broadcast('nowPlayingChanged');
 	}
 	this.getNowPlaying = function(){
 		return nowPlaying;

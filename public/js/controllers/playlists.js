@@ -1,5 +1,6 @@
 mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeFactory, DragDropFactory){
 	$scope.playlists = PlayListFactory.getAll();
+	
 	$scope.add = function() {
 		PlayListFactory.add($scope.new_playlist_name, Math.floor((Math.random()*100000)+1), []) 
 	};
@@ -20,4 +21,5 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 		console.log("Playlist ID: " , id);
 		PlayListFactory.setNowPlaying(id);
 	}
+	$scope.$on
 });

@@ -29,7 +29,7 @@
 		<accordion close-others="true">
 			<accordion-group ng-repeat="playlist in playlists | filter:searchPlaylist">
 				<accordion-heading>
-					{{playlist.name}}<i ng-click="setNowPlaying(playlist.id)" class="pull-right glyphicon glyphicon-play"></i>
+					{{playlist.name}} ({{playlist.songs.length}} Songs)<i ng-show="playlist.songs.length > 0" ng-click="setNowPlaying(playlist.id)" class="pull-right glyphicon glyphicon-play"></i>
 		        </accordion-heading>
 				<ul class="songlist">
 					<li ng-repeat="song in playlist.songs">
@@ -54,13 +54,18 @@
 			</div>
 		</div>-->
 	</div>
+	<div class="playerarea col-sm-2 fillheight">
+	</div>
 	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
 		<div class="nowplayingsong" ng-repeat="song in nowPlaying.songs">{{song.snippet.title}}
 		</div>
+		<youtube-video id="player-div" video-id="currentVideoId"></youtube-video>
 	</div>
+
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="/lib/jquery-ui/jquery-ui.min.js"></script>
 	<script	src="/lib/angular/angular.min.js"></script>
+	<script	src="/lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
 	<script	src="/lib/angular-dragdrop/src/angular-dragdrop.min.js"></script>
 	<script src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
 	<script src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>

@@ -1,4 +1,7 @@
 'use strict';
-var mean = angular.module('mean-playlist',['ngDragDrop', 'ui.bootstrap']);
+var mean = angular.module('mean-playlist',['ngDragDrop', 'ui.bootstrap', 'youtube-embed']);
 
-//jQuery functions
+//Global functions
+mean.controller('GlobalFuncCtrl', function($scope, $window){
+	
+})
