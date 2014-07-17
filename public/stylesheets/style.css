@@ -31,7 +31,7 @@ div.searchbar {
 	border: 1px dashed #999;
 	background: #ddd;
 }
-.nowplayingsong{
+.nowplayingentry{
 	float: left;
 	border: 1px solid #999;
 	margin-right: 5px;
@@ -40,4 +40,29 @@ div.searchbar {
 	overflow: hidden;
 	margin-top: 5px;
 	width: 100px;
+}
+.nowplayingsong {
+	border: 2px solid orange;
+}
+.video_thumbnail{
+	height: 90px;
+	width: 120px;
+	position: relative;
+	float: left;
+}
+.likes_dislikes_bar{
+	position: absolute;
+	bottom: 0;
+	height: 3px;
+	width: 120px;
+	left: 0;
+	background: red;
+}
+.likes_bar{
+	background: green;
+	height: 3px;
+}
+.duration{
+	color: white;
+	text-shadow: 0px 1px 1px #666;
 }

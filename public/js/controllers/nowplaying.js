@@ -8,7 +8,8 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 		$scope.current_song_index = 0;
 	});
 	$scope.$watch('current_song_index', function(newVal){
-		if(!isNaN(newVal)) {
+		console.log("Newval: ", "x"+ newVal+"x");
+		if(newVal!=='' && !isNaN(newVal)) {
 			$scope.current_song = $scope.nowPlaying.songs[$scope.current_song_index];
 			$scope.currentVideoId = $scope.nowPlaying.songs[$scope.current_song_index].id.videoId;
 		}

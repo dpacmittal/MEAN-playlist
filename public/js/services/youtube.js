@@ -10,7 +10,6 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 		return $http.get(api_url + 'search?maxResults='+ number_results +'&part=snippet&q=' + encodeURI(query) + '&key=' + api_key + '&type=video')
 		.success(function(data){
 			var ids = [];
-			formatDateYoutube('PT4H3M8S');
 			factory.search_results = data; 
 
 			//Create an array of IDs so we can retrieve duration, likes, dislikes, comments for all search results
@@ -37,12 +36,28 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 	}
 	function formatDateYoutube(date) {
 		var h = date.match(/(\d+)H/)
-		h = (h===null)?0:h;
+		h = parseInt((h===null)?0:h);
 		var m = date.match(/(\d+)M/);
-		m = (m===null)?0:m;
+		m = parseInt((m===null)?0:m);
 		var s = date.match(/(\d+)S/);
-		s = (s===null)?0:s;
-		var d = new Date(0,0,0, h[1], m[1], s[1], 0);
+		s = parseInt((s===null)?0:s);
+		time_arr = [];
+		if(h>0){
+			time_arr.push('' + h);
+		}
+		if(m>0){
+			if(m<10)
+				time_arr.push('0'+m);
+			else
+				time_arr.push(m);
+		}
+		if(s>0){
+			if(s<10)
+				time_arr.push('0'+s);
+			else
+				time_arr.push(s);
+		}
+		var d = time_arr.join(':');
 		return d;
 	}
 
