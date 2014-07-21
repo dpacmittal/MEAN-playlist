@@ -1,12 +1,15 @@
 To-do:
-	Bugs/Improvements:
+	Improvements:
 		Make normalized data structures (playlists, songs, search-results) for cleaner code
 		SearchFactory should have methods like next page.
 		Add helper methods to gapiFactory for avoiding code-repetition.
 		Combine youtube.js and gapi.js into one. We don't need two services to interact with youtube.
 
+	Bugs:
+		1. When changing nowplaying playlist, sometimes the current song doesn't stop playing.
 
 	Features:
+		Add controls (next, previous, pause, play)
 		Make panels resizable
 		Ability to connect to youtube account and fetch playlists directly from there and ability to edit them. Then it saves the changes to youtube.
 		Make automatic next page loading on scroll for search results.

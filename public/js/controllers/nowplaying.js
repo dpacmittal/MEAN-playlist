@@ -5,10 +5,9 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 	$scope.currentVideoId = '';
 	$scope.$on('nowPlayingChanged', function(){
 		$scope.nowPlaying = PlayListFactory.getNowPlaying();
-		$scope.current_song_index = 0;
+		$scope.current_song_index = $scope.nowPlaying.current_song_index;
 	});
 	$scope.$watch('current_song_index', function(newVal){
-		console.log("Newval: ", "x"+ newVal+"x");
 		if(newVal!=='' && !isNaN(newVal)) {
 			$scope.current_song = $scope.nowPlaying.songs[$scope.current_song_index];
 			$scope.currentVideoId = $scope.nowPlaying.songs[$scope.current_song_index].id;
@@ -18,7 +17,7 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 		$youtube.player.playVideo();
 	});
 	$scope.$on('youtube.player.ended', function(){
-		$scope.current_song_index++;
+		$scope.nowPlaying.current_song_index++;
 	});
 	
 });

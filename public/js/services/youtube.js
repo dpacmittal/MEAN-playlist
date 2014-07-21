@@ -18,14 +18,13 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 			});
 
 			//For each video details that we get, we insert the details object for that video in the main search_results.
-			var search_results = {}
 			factory.refreshVideoInfo(ids).success(function(video_details){
 				angular.forEach(video_details.items, function(value, key){
 					factory.fixDateOnSong(value);
 				})
+				factory.search_results = video_details;;
+				$rootScope.$broadcast('searchResultRetrieved');
 			});
-			factory.search_results = data;
-			$rootScope.$broadcast('searchResultRetrieved');
 		});
 	}
 
@@ -34,6 +33,7 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 	}
 
 	factory.fixDateOnSong = function(song) {
+		console.log("Song", song);
 		song.contentDetails.formattedDuration = factory.formatDateYoutube(song.contentDetails.duration);
 	}
 

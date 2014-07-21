@@ -35,14 +35,10 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 						YoutubeFactory.refreshVideoInfo(songs).success(function(songs_with_info){
 							angular.forEach(songs_with_info.items, function(value, key){
 								YoutubeFactory.fixDateOnSong(value);
-								console.log('value', value);
 								final_song_list.push(value);
 							});
-
-						}).success(function(data){
-							console.log(final_song_list);
 							PlayListFactory.add(value.snippet.title, value.id, false, final_song_list);
-						})
+						});
 					});
 				});
 			});

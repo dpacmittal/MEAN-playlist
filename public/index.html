@@ -51,9 +51,9 @@
 	<div ng-controller="SearchController" class="search-results col-sm-8 fillheight">
 		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{placeholder:true,animate:true, onStart:'dragStart(video)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body', containment: 'document', distance:'10', opacity: '0.5', cursorAt: {top: 0, left: 0}}">
 			<div class='video_thumbnail' style="background-image: url('{{video.snippet.thumbnails.default.url}}');">
-				<span class='duration'>{{video.details.contentDetails.formattedDuration}}</span>
+				<span class='duration'>{{video.contentDetails.formattedDuration}}</span>
 				<div class='likes_dislikes_bar'>
-					<div class='likes_bar' style="width: {{(video.details.statistics.likeCount*120)/((video.details.statistics.likeCount*1)+(video.details.statistics.dislikeCount*1))}}"></div>
+					<div class='likes_bar' style="width: {{(video.statistics.likeCount*120)/((video.statistics.likeCount*1)+(video.statistics.dislikeCount*1))}}"></div>
 				</div>
 			</div>
 			<h3>{{video.snippet.title}} </h3>
@@ -70,9 +70,12 @@
 	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
 		<div class="nowplayingentry" ng-repeat="song in nowPlaying.songs" ng-class="{nowplayingsong: $index==current_song_index}">{{song.snippet.title}}
 		</div>
-		<youtube-video id="player-div" video-id="currentVideoId"></youtube-video>
 	</div>
-
+	<div ng-controller="NowPlayingController" id="playerWrapper">
+		
+			<youtube-video id="player-div" video-id="currentVideoId"></youtube-video>
+		
+	</div>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="/lib/jquery-ui/jquery-ui.min.js"></script>
 	<script	src="/lib/angular/angular.min.js"></script>

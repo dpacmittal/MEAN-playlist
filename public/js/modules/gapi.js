@@ -16,7 +16,6 @@ factory('gapiFactory', function($rootScope, $window, PLIST_CONFIG, $rootScope) {
 			immediate = false;
 
 		gapi.client.setApiKey(api_key);
-		//debugger;
 		gapi.auth.authorize({
 				client_id: PLIST_CONFIG.client_id, 
 				scope: PLIST_CONFIG.oauth_scopes, 
@@ -27,19 +26,13 @@ factory('gapiFactory', function($rootScope, $window, PLIST_CONFIG, $rootScope) {
 	}
 
 	$window.handleAuthResult = function(authData) {
-		//debugger;
+		
 		if( Object.prototype.hasOwnProperty.call(authData, 'access_token') ) {
-			console.log("Logged in");
-			console.log(authData);
 			service.authData = authData;
-			//Not required, doesn't work also. Token is automatically set by gapi
-			//gapi.auth.setToken(authData.access_token);
-			
 			$rootScope.$broadcast('gapi:LoggedIn');
 		}
 		else
 			service.auth(false);
-		
 	}
 
 	service.getAllPlaylists = function() {
