@@ -10,7 +10,7 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 		return $http.get(api_url + 'search?maxResults='+ number_results +'&part=snippet&q=' + encodeURI(query) + '&key=' + api_key + '&type=video')
 		.success(function(data){
 			var ids = [];
-			factory.search_results = data; 
+			 
 
 			//Create an array of IDs so we can retrieve duration, likes, dislikes, comments for all search results
 			angular.forEach(data.items, function(value, key){
@@ -18,11 +18,13 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 			});
 
 			//For each video details that we get, we insert the details object for that video in the main search_results.
+			var search_results = {}
 			factory.refreshVideoInfo(ids).success(function(video_details){
 				angular.forEach(video_details.items, function(value, key){
 					factory.fixDateOnSong(value);
 				})
-			})
+			});
+			factory.search_results = data;
 			$rootScope.$broadcast('searchResultRetrieved');
 		});
 	}
