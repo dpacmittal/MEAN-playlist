@@ -28,13 +28,13 @@
 						{{song.snippet.title}}
 					</li>
 				</ul>
-				<button ng-click="setNowPlaying(playlist.id)">Play</button>
+				<button ng-click="setNowPlaying()">Play</button>
 			</li>
 		</ul>
 		<accordion close-others="true">
 			<accordion-group ng-repeat="playlist in playlists | filter:searchPlaylist">
 				<accordion-heading>
-					{{playlist.name}} ({{playlist.songs.length}} Songs)<i ng-show="playlist.songs.length > 0" ng-click="setNowPlaying(playlist.id)" class="pull-right glyphicon glyphicon-play"></i>
+					{{playlist.name}} ({{playlist.songs.length}} Songs)<i ng-show="playlist.songs.length > 0" ng-click="setNowPlaying()" class="pull-right glyphicon glyphicon-play"></i>
 		        </accordion-heading>
 				<ul class="songlist">
 					<li ng-repeat="song in playlist.songs">
@@ -68,13 +68,16 @@
 	<div class="playerarea col-sm-2 fillheight">
 	</div>
 	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
-		<div class="nowplayingentry" ng-repeat="song in nowPlaying.songs" ng-class="{nowplayingsong: $index==current_song_index}">{{song.snippet.title}}
+		<div class="nowplayingentry" ng-repeat="song in nowPlaying.songs" ng-class="{nowplayingsong: $index==nowPlaying.current_song_index}">{{song.snippet.title}}
+		</div>
+		<div id="controls">
+			<button ng-click="previous()" class="btn btn-default playprevious glyphicon glyphicon-backward"></button>
+			<button ng-click="togglePlay()" class="btn btn-default playpause glyphicon glyphicon-play"></button>
+			<button ng-click="next()" class="btn btn-default playnext glyphicon glyphicon-forward"></button>
 		</div>
 	</div>
 	<div ng-controller="NowPlayingController" id="playerWrapper">
-		
-			<youtube-video id="player-div" video-id="currentVideoId"></youtube-video>
-		
+		<youtube-video id="player-div" video-id="nowPlaying.currentVideoId"></youtube-video>
 	</div>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="/lib/jquery-ui/jquery-ui.min.js"></script>

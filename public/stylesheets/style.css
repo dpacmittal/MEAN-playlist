@@ -73,3 +73,26 @@ div.searchbar {
 	left: 50%;
 	-webkit-transform: translate(-50%,-50%);
 }
+#controls {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translate(-50%,0);
+	top: -20px;
+}
+#controls button{
+	border-radius: 50%;
+	width: 40px;
+	outline: none;
+	height: 40px;
+}
+.playpause {
+	z-index: 100;
+}
+.playprevious {
+	position: relative;
+	left: 5px;
+}
+.playnext {
+	position: relative;
+	left: -5px;
+}

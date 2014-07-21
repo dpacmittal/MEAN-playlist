@@ -16,9 +16,10 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 		DragDropFactory.clearData();
 		PlayListFactory.addSong(this.playlist.name, video);
 	}
-	$scope.setNowPlaying = function(id){
-		PlayListFactory.setNowPlaying(id);
+	$scope.setNowPlaying = function(){
+		PlayListFactory.setNowPlaying(this.playlist);
 	}
+
 
 	$scope.$on('gapi:LoggedIn', function() {
 		gapiFactory.getAllPlaylists().execute(function(data){
@@ -45,6 +46,4 @@ mean.controller('PlayListController', function($scope, PlayListFactory, YoutubeF
 			//data.
 		});
 	});
-
-	$scope.$on
 });

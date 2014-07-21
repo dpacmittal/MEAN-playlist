@@ -33,7 +33,7 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 	}
 
 	factory.fixDateOnSong = function(song) {
-		console.log("Song", song);
+		//console.log("Song", song);
 		song.contentDetails.formattedDuration = factory.formatDateYoutube(song.contentDetails.duration);
 	}
 
