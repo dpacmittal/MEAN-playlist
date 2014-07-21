@@ -7,15 +7,25 @@ angular.module('gapi', ['ng']).run(function () {
 factory('gapiFactory', function($rootScope, $window, PLIST_CONFIG, $rootScope) {
 	var service = {};
 	var api_key = PLIST_CONFIG.api_key;
+	var retry = true;
 	$window.gapiLoaded = function() {
 		service.loaded = true;
+		gapi.client.setApiKey(api_key);
 	}
 
-	service.auth = function(immediate) {
+	service.auth = function(immediate, try_no) {
+		if(!retry)
+			return;
+
+		if(typeof try_no === 'undefined')
+			try_no = 1;
+
+		if(try_no == 2)
+			retry = false;
+
 		if(typeof immediate === 'undefined')
 			immediate = false;
 
-		gapi.client.setApiKey(api_key);
 		gapi.auth.authorize({
 				client_id: PLIST_CONFIG.client_id, 
 				scope: PLIST_CONFIG.oauth_scopes, 
@@ -32,7 +42,7 @@ factory('gapiFactory', function($rootScope, $window, PLIST_CONFIG, $rootScope) {
 			$rootScope.$broadcast('gapi:LoggedIn');
 		}
 		else
-			service.auth(false);
+			service.auth(false, 2);
 	}
 
 	service.getAllPlaylists = function() {
