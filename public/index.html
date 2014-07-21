@@ -12,7 +12,12 @@
 	<div ng-controller="SearchController" class='col-sm-12 searchbar'>
 		
 		<input type="text" ng-model='query' ng-enter="search()">
-		
+		<div ng-controller="LoginController">
+			<span ng-hide="status.logged"> HEY </span>
+			<button ng-click="gapi.auth()" ng-hide="status.logged">Auth</button>
+			<button ng-click="gapi.getAllPlaylists()">Get Channels</button>
+			<button ng-click="gapi.logout()" ng-show="status.logged">Logout</button>
+		</div>
 	</div>
 	<div ng-controller="PlayListController" class='col-sm-2 fillheight'>
 		<input type="text" placeholder="Search" ng-model="searchPlaylist"/>
@@ -75,6 +80,7 @@
 	<script	src="/lib/angular-dragdrop/src/angular-dragdrop.min.js"></script>
 	<script src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
 	<script src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script	src="/js/modules/gapi.js"></script>
 	<script src="/js/main.js"></script>
 	<script src="/js/config/config.js"></script>
 	<script src="/js/services/playlist.js"></script>
@@ -85,5 +91,6 @@
 	<script src="/js/controllers/playlists.js"></script>
 	<script src="/js/controllers/search.js"></script>
 	<script src="/js/controllers/nowplaying.js"></script>
+	<script src="/js/controllers/login.js"></script>
 </body>
 </html>

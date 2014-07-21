@@ -1,15 +1,12 @@
 mean.factory('PlayListFactory', function($filter, $rootScope){
 	var factory = this;
-	var playlists = [{name: 'abcdef', id:1, songs:[]}, {name: '123123', id:2, songs:[]}];
+	var playlists = [{name: 'abcdef', id:1, local: true, songs:[]}];
 	var nowPlaying;
 	this.getAll = function(){ return playlists;}
-	this.add = function(name, id, songs){
+	this.add = function(name, id, local, songs){
 		if(!songs.length)
 			songs = [];
-		playlists.push({name: name, id: id, songs: songs});
-	}
-	this.refreshData = function(playlist_id){
-
+		playlists.push({name: name, id: id, local: local, songs: songs});
 	}
 	this.addSong = function(playlist_name, song) {
 		var found = $filter('filter')(playlists, {name: playlist_name}, true)[0];

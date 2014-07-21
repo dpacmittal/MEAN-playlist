@@ -1,4 +1,4 @@
-mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG){
+mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG, gapiFactory){
 	var factory = this;
 	var api_url = 'https://www.googleapis.com/youtube/v3/';
 	var api_key = PLIST_CONFIG.api_key;
@@ -20,11 +20,7 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 			//For each video details that we get, we insert the details object for that video in the main search_results.
 			factory.refreshVideoInfo(ids).success(function(video_details){
 				angular.forEach(video_details.items, function(value, key){
-					value.contentDetails.formattedDuration = formatDateYoutube(value.contentDetails.duration);
-					found = '';
-					found = $filter('filter')(data.items, {id: {videoId: value.id} } )[0];
-					if(angular.isObject(found))
-						found.details = value;
+					factory.fixDateOnSong(value);
 				})
 			})
 			$rootScope.$broadcast('searchResultRetrieved');
@@ -34,7 +30,12 @@ mean.factory('YoutubeFactory', function($http, $rootScope, $filter, PLIST_CONFIG
 	factory.getSearchResults = function(){
 		return factory.search_results;
 	}
-	function formatDateYoutube(date) {
+
+	factory.fixDateOnSong = function(song) {
+		song.contentDetails.formattedDuration = factory.formatDateYoutube(song.contentDetails.duration);
+	}
+
+	factory.formatDateYoutube = function(date) {
 		var h = date.match(/(\d+)H/)
 		h = parseInt((h===null)?0:h);
 		var m = date.match(/(\d+)M/);

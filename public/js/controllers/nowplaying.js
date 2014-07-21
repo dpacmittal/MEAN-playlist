@@ -1,4 +1,4 @@
-mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtube){
+mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtube, gapiFactory){
 	$scope.nowPlaying = {};
 	$scope.current_song = '';
 	$scope.current_song_index = '';
@@ -11,7 +11,7 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 		console.log("Newval: ", "x"+ newVal+"x");
 		if(newVal!=='' && !isNaN(newVal)) {
 			$scope.current_song = $scope.nowPlaying.songs[$scope.current_song_index];
-			$scope.currentVideoId = $scope.nowPlaying.songs[$scope.current_song_index].id.videoId;
+			$scope.currentVideoId = $scope.nowPlaying.songs[$scope.current_song_index].id;
 		}
 	});
 	$scope.$on('youtube.player.ready', function(){
@@ -19,5 +19,6 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 	});
 	$scope.$on('youtube.player.ended', function(){
 		$scope.current_song_index++;
-	})
+	});
+	
 });
