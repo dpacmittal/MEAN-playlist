@@ -16,6 +16,15 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 		$scope.nowPlaying.current_song_index++;
 	});
 
+	$scope.$on('youtube.player.playing', function() {
+		$scope.nowPlaying.playing = true;
+		$scope.nowPlaying.paused = false;
+	});
+	$scope.$on('youtube.player.paused', function(){
+		$scope.nowPlaying.playing = false;
+		$scope.nowPlaying.paused = true;
+	});
+
 	$scope.togglePlay = function() {
 		if($youtube.player.getPlayerState() == 1)
 			$youtube.player.pauseVideo();

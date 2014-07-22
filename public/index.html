@@ -72,7 +72,7 @@
 		</div>
 		<div id="controls">
 			<button ng-click="previous()" class="btn btn-default playprevious glyphicon glyphicon-backward"></button>
-			<button ng-click="togglePlay()" class="btn btn-default playpause glyphicon glyphicon-play"></button>
+			<button ng-click="togglePlay()" class="btn btn-default playpause glyphicon" ng-class="{'glyphicon-play': nowPlaying.paused, 'glyphicon-pause': nowPlaying.playing}"></button>
 			<button ng-click="next()" class="btn btn-default playnext glyphicon glyphicon-forward"></button>
 		</div>
 	</div>
