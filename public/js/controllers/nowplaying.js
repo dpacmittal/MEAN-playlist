@@ -33,11 +33,16 @@ mean.controller('NowPlayingController', function($scope, PlayListFactory, $youtu
 	}
 
 	$scope.next = function() {
-		$scope.nowPlaying.current_song_index++;
+		//$scope.nowPlaying.current_song_index++;
+		$scope.nowPlaying.current_song_index = ($scope.nowPlaying.current_song_index + 1) % ($scope.nowPlaying.songs.length);
+		console.log('next', $scope.nowPlaying.current_song_index);
 	}
 
 	$scope.previous = function() {
-		$scope.nowPlaying.current_song_index--;
+
+		//$scope.nowPlaying.current_song_index--;
+		$scope.nowPlaying.current_song_index = (Math.abs($scope.nowPlaying.current_song_index - 1)) % ($scope.nowPlaying.songs.length);
+		console.log('prev', $scope.nowPlaying.current_song_index);
 	}
 	
 });
