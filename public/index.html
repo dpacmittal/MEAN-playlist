@@ -12,16 +12,38 @@
 <body ng-app="mean-playlist">
 	<div ng-controller="SearchController" class='col-sm-12 searchbar'>
 		
-		<input type="text" ng-model='query' ng-enter="search()">
+		<input type="text" ng-model='query' placeholder="Search for video" ng-enter="search()">
 		<div ng-controller="LoginController">
-			<span ng-hide="status.logged"> HEY </span>
 			<button ng-click="gapi.auth()" ng-hide="status.logged">Auth</button>
 			<button ng-click="gapi.getAllPlaylists()">Get Channels</button>
 			<button ng-click="gapi.logout()" ng-show="status.logged">Logout</button>
 		</div>
 	</div>
+	<div class="playerarea col-sm-7 fillheight">
+		<div ng-controller="NowPlayingController" id="playerWrapper">
+			<youtube-video id="player-div" video-id="nowPlaying.currentVideoId"></youtube-video>
+		</div>
+	</div>
+	<div ng-controller="SearchController" class="search-results col-sm-3 fillheight">
+		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{placeholder:true,animate:true, onStart:'dragStart(video)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body', containment: 'document', distance:'10', opacity: '0.5', cursorAt: {bottom: 0, right: 0}}">
+			<div class='video_thumbnail'>
+				<img src="{{video.snippet.thumbnails.default.url}}"/>
+				<span class='duration'>{{video.contentDetails.formattedDuration}}</span>
+				<div class='likes_dislikes_bar'>
+					<div class='likes_bar' style="width: {{(video.statistics.likeCount*100)/((video.statistics.likeCount*1)+(video.statistics.dislikeCount*1))}}"></div>
+				</div>
+			</div>
+			<h4 class="video_title">{{video.snippet.title}} </h4>
+			<div class="clearfix"></div>
+		</div>
+		<!--<div class="videos">
+			<div class='video' ng-repeat="video in results">
+				<youtube code="{{video.id.videoId}}" /></youtube>
+			</div>
+		</div>-->
+	</div>
 	<div ng-controller="PlayListController" class='col-sm-2 fillheight'>
-		<input type="text" placeholder="Search" ng-model="searchPlaylist"/>
+		<input type="text" placeholder="Filter playlists" ng-model="searchPlaylist"/>
 		<ul>
 			<li ng-repeat="playlist in playlists"  data-drop="true" jqyoui-droppable="{multiple: true, onDrop: 'dragEnd()'}" data-jqyoui-options="{accept: '.search-result', hoverClass: 'droppable-highlight', tolerance: 'pointer'}">{{playlist.name}}
 				<ul class="songlist">
@@ -48,28 +70,6 @@
 		<button type="submit" ng-click="add()">Submit</button>
 		<button type="submit" ng-click="videoInfo()">VideoInfo</button>
 		
-	</div>
-	<div ng-controller="SearchController" class="search-results col-sm-4 fillheight">
-		<div class="search-result" ng-repeat="video in results" ng-model="results" data-drag="true" jqyoui-draggable="{placeholder:true,animate:true, onStart:'dragStart(video)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body', containment: 'document', distance:'10', opacity: '0.5', cursorAt: {top: 0, left: 0}}">
-			<div class='video_thumbnail' style="background-image: url('{{video.snippet.thumbnails.default.url}}');">
-				<span class='duration'>{{video.contentDetails.formattedDuration}}</span>
-				<div class='likes_dislikes_bar'>
-					<div class='likes_bar' style="width: {{(video.statistics.likeCount*120)/((video.statistics.likeCount*1)+(video.statistics.dislikeCount*1))}}"></div>
-				</div>
-			</div>
-			<h3>{{video.snippet.title}} </h3>
-			<div class="clearfix"></div>
-		</div>
-		<!--<div class="videos">
-			<div class='video' ng-repeat="video in results">
-				<youtube code="{{video.id.videoId}}" /></youtube>
-			</div>
-		</div>-->
-	</div>
-	<div class="playerarea col-sm-6 fillheight">
-		<div ng-controller="NowPlayingController" id="playerWrapper">
-			<youtube-video id="player-div" video-id="nowPlaying.currentVideoId"></youtube-video>
-		</div>
 	</div>
 	<div ng-controller="NowPlayingController" class='col-sm-12 nowplaying'>
 		<div class="nowplayingentry" ng-repeat="song in nowPlaying.songs" ng-class="{nowplayingsong: $index==nowPlaying.current_song_index}">{{song.snippet.title}}

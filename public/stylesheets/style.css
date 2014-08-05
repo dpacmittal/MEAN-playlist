@@ -45,8 +45,6 @@ div.searchbar {
 	border: 2px solid orange;
 }
 .video_thumbnail{
-	height: 90px;
-	width: 120px;
 	position: relative;
 	float: left;
 }
@@ -54,7 +52,7 @@ div.searchbar {
 	position: absolute;
 	bottom: 0;
 	height: 3px;
-	width: 120px;
+	width: 100px;
 	left: 0;
 	background: red;
 }
@@ -65,6 +63,28 @@ div.searchbar {
 .duration{
 	color: white;
 	text-shadow: 0px 1px 1px #666;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+}
+.video_thumbnail img{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.video_thumbnail, .video_thumbnail img {
+	height: 75px;
+	width: 100px;
+}
+.video_title {
+	margin: 0 0 0 10px;
+	float: left;
+	width: 50%;
+	font-weight: 400;
+}
+
+.search-result {
+	margin-top: 10px;
 }
 
 #playerWrapper{
