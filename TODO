@@ -1,4 +1,14 @@
 To-do:
+        Required todo:
+                Delete songs from playlist.
+                Select single song to play from playlist.
+                Shuffle feature.
+                Reorder songs in playlist using drag and drop.
+                Sort by views/plays, rating.
+                Delete playlist.
+                Save playlist to server.
+                Support multiple services (vimeo, dailymotion).
+                
 	Improvements:
 		Make normalized data structures (playlists, songs, search-results) for cleaner code
 		SearchFactory should have methods like next page.
